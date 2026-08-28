@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #222; color: white; }
+    .lampada { width: 120px; height: 120px; border-radius: 50%; background-color: #555; margin-bottom: 20px; transition: background-color 0.3s, box-shadow 0.3s; }
+    .lampada.ligada { background-color: #ffeb3b; box-shadow: 0 0 40px #ffeb3b; }
+    button { padding: 10px 24px; font-size: 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div id="lampada" class="lampada"></div>
+  <button id="btn-toggle">Ligar</button>
+
+  <script>
+
+    const lampada = document.getElementById("lampada");
+    const botao = document.getElementById("btn-toggle");
+
+    botao.addEventListener("click", function () {
+      lampada.classList.toggle("ligada");
+
+      if (lampada.classList.contains("ligada")) {
+        botao.innerText = "Desligar";
+      } else {
+        botao.innerText = "Ligar";
+      }
+    });
+    
+  </script>
+</body>
+</html>

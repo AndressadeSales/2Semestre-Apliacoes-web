@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #e9ecef; }
+    .box { background: white; padding: 2rem; border-radius: 8px; text-align: center; min-width: 200px; }
+    .numero { font-size: 4rem; font-weight: bold; color: #333; margin: 20px 0; }
+    .botoes { display: flex; gap: 10px; justify-content: center; }
+    button { padding: 10px 18px; font-size: 1.2rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Contador</h2>
+    <div id="valor" class="numero">0</div>
+    <div class="botoes">
+      <button id="btn-subtrair">-</button>
+      <button id="btn-zerar">Zerar</button>
+      <button id="btn-somar">+</button>
+    </div>
+  </div>
+
+  <script>
+    
+    const valor = document.getElementById("valor");
+    const btnSomar = document.getElementById("btn-somar");
+    const btnSubtrair = document.getElementById("btn-subtrair");
+    const btnZerar = document.getElementById("btn-zerar");
+
+    let contador = 0;
+
+    btnSomar.addEventListener("click", function () {
+      contador++;
+      valor.innerText = contador;
+    });
+
+    btnSubtrair.addEventListener("click", function () {
+      if (contador > 0) {
+        contador--;
+        valor.innerText = contador;
+      }
+    });
+
+    btnZerar.addEventListener("click", function () {
+      contador = 0;
+      valor.innerText = contador;
+    });
+
+  </script>
+</body>
+</html>

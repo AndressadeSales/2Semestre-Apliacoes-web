@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Calculadora</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      width: 80px;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      background-color: #ddd;
+    }
+
+    button:hover {
+      background-color: #bbb;
+    }
+
+    .selecionado {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-igual {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-igual:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      background-color: #eee;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <input type="number" id="valor1" value="20">
+
+    <button onclick="selecionarOperacao('+', this)">+</button>
+
+    <button onclick="selecionarOperacao('-', this)">-</button>
+
+    <button onclick="selecionarOperacao('*', this)">*</button>
+
+    <button onclick="selecionarOperacao('/', this)">/</button>
+
+    <button onclick="selecionarOperacao('soma', this)">Σ</button>
+
+    <button onclick="selecionarOperacao('produto', this)">Π</button>
+
+    <button onclick="selecionarOperacao('%', this)">%</button>
+
+    <button onclick="selecionarOperacao('potencia', this)">^</button>
+
+    <button onclick="selecionarOperacao('fatorial', this)">!</button>
+
+    <!-- Combinação -->
+    <button onclick="selecionarOperacao('combinacao', this)">C</button>
+
+    <input type="number" id="valor2" value="50">
+
+    <button class="btn-igual" onclick="calcular()">=</button>
+
+    <input type="number" id="resultado" readonly>
+
+  </div>
+
+  <script>
+
+    let operacao = "";
+
+    function selecionarOperacao(tipo, botao) {
+
+      operacao = tipo;
+
+      // Pega todos os botões
+      let botoes = document.querySelectorAll(".container button");
+
+      // Remove a seleção de todos os botões
+      botoes.forEach(function(botao) {
+        botao.classList.remove("selecionado");
+      });
+
+      // Seleciona o botão escolhido
+      botao.classList.add("selecionado");
+
+    }
+
+
+    function calcular() {
+
+      let valor1 = Number(document.getElementById("valor1").value);
+
+      let valor2 = Number(document.getElementById("valor2").value);
+
+      let resultado;
+
+
+      if (operacao == "+") {
+
+        resultado = valor1 + valor2;
+
+
+      } else if (operacao == "-") {
+
+        resultado = valor1 - valor2;
+
+
+      } else if (operacao == "*") {
+
+        resultado = valor1 * valor2;
+
+
+      } else if (operacao == "/") {
+
+        resultado = valor1 / valor2;
+
+
+      } else if (operacao == "soma") {
+
+        resultado = valor1 + valor2;
+
+
+      } else if (operacao == "produto") {
+
+        resultado = valor1 * valor2;
+
+
+      } else if (operacao == "%") {
+
+        resultado = (valor1 * valor2) / 100;
+
+
+      } else if (operacao == "potencia") {
+
+        resultado = valor1 ** valor2;
+
+
+      } else if (operacao == "fatorial") {
+
+        resultado = 1;
+
+        for (let i = 1; i <= valor1; i++) {
+          resultado = resultado * i;
+        }
+
+
+      } else if (operacao == "combinacao") {
+
+        // Verifica se os valores são válidos
+        if (
+          valor1 < 0 ||
+          valor2 < 0 ||
+          valor2 > valor1 ||
+          !Number.isInteger(valor1) ||
+          !Number.isInteger(valor2)
+        ) {
+
+          alert("Para combinação, informe números inteiros onde n >= p.");
+
+          return;
+        }
+
+        // Calcula n!
+        let fatorialN = 1;
+
+        for (let i = 1; i <= valor1; i++) {
+          fatorialN = fatorialN * i;
+        }
+
+        // Calcula p!
+        let fatorialP = 1;
+
+        for (let i = 1; i <= valor2; i++) {
+          fatorialP = fatorialP * i;
+        }
+
+        // Calcula (n-p)!
+        let fatorialNP = 1;
+
+        for (let i = 1; i <= valor1 - valor2; i++) {
+          fatorialNP = fatorialNP * i;
+        }
+
+        // Fórmula da combinação
+        resultado = fatorialN / (fatorialP * fatorialNP);
+
+
+      } else {
+
+        alert("Escolha uma operação!");
+
+        return;
+
+      }
+
+
+      document.getElementById("resultado").value = resultado;
+
+    }
+
+  </script>
+
+</body>
+
+</html>

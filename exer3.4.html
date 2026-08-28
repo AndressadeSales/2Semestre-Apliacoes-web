@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercício 3.4 - Cadastro de Produtos</title>
+</head>
+
+<body>
+
+    <h1>Cadastro de Produtos</h1>
+
+    <input
+        type="text"
+        id="nomeProduto"
+        placeholder="Nome do Produto"
+    >
+
+    <br><br>
+
+    <input
+        type="number"
+        id="precoProduto"
+        placeholder="Preço (R$)"
+    >
+
+    <br><br>
+
+    <button onclick="cadastrarProduto()">
+        Cadastrar Produto
+    </button>
+
+
+    <h2>Produtos cadastrados</h2>
+
+    <ul id="listaProdutos"></ul>
+
+
+    <script>
+
+        // Função para cadastrar um produto
+        function cadastrarProduto() {
+
+            // Pega o nome do produto
+            let nome = document.getElementById(
+                "nomeProduto"
+            ).value;
+
+
+            // Pega o preço e transforma em número
+            let preco = Number(
+                document.getElementById(
+                    "precoProduto"
+                ).value
+            );
+
+
+            // Cria um novo elemento <li>
+            let item = document.createElement("li");
+
+
+            // Coloca o nome e o preço dentro do <li>
+            item.innerText =
+                nome + " - R$ " + preco.toFixed(2);
+
+
+            // Cria um botão de exclusão
+            let botaoExcluir = document.createElement(
+                "button"
+            );
+
+
+            // Define o texto do botão
+            botaoExcluir.innerText = "Excluir";
+
+
+            // Define o que acontecerá quando clicar
+            botaoExcluir.onclick = function () {
+
+                // Remove o produto da tela
+                item.remove();
+
+            };
+
+
+            // Coloca o botão dentro do <li>
+            item.appendChild(botaoExcluir);
+
+
+            // Coloca o <li> dentro da lista
+            document.getElementById(
+                "listaProdutos"
+            ).appendChild(item);
+
+
+            // Limpa o campo do nome
+            document.getElementById(
+                "nomeProduto"
+            ).value = "";
+
+
+            // Limpa o campo do preço
+            document.getElementById(
+                "precoProduto"
+            ).value = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercício 3.5 - Filtro de Tecnologias</title>
+</head>
+
+<body>
+
+    <h1>Buscar Tecnologia</h1>
+
+    <input
+        type="text"
+        id="campoBusca"
+        placeholder="Buscar tecnologia..."
+        oninput="filtrarTecnologias()"
+    >
+
+
+    <ul id="listaTecnologias">
+
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>PHP</li>
+        <li>Java</li>
+
+    </ul>
+
+
+    <script>
+
+        // Função responsável pelo filtro
+        function filtrarTecnologias() {
+
+            // Pega o texto digitado
+            // e transforma tudo em letras minúsculas
+            let busca = document.getElementById(
+                "campoBusca"
+            ).value.toLowerCase();
+
+
+            // Encontra todos os <li> da lista
+            let tecnologias = document.querySelectorAll(
+                "#listaTecnologias li"
+            );
+
+
+            // Percorre todos os elementos encontrados
+            for (
+                let i = 0;
+                i < tecnologias.length;
+                i++
+            ) {
+
+                // Pega o texto da tecnologia atual
+                // e transforma em minúsculo
+                let texto = tecnologias[i]
+                    .innerText
+                    .toLowerCase();
+
+
+                // Verifica se o texto contém
+                // aquilo que foi pesquisado
+                if (texto.includes(busca)) {
+
+                    // Mostra o elemento
+                    tecnologias[i].style.display = "block";
+
+                } else {
+
+                    // Esconde o elemento
+                    tecnologias[i].style.display = "none";
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

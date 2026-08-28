@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercício 3.3 - Lista de Tarefas</title>
+</head>
+
+<body>
+
+    <h1>Lista de Tarefas</h1>
+
+    <input 
+        type="text"
+        id="campoTarefa"
+        placeholder="Digite uma tarefa"
+    >
+
+    <button onclick="adicionarTarefa()">
+        Adicionar Tarefa
+    </button>
+
+    <ul id="minhasTarefas"></ul>
+
+
+    <script>
+
+        // Array que armazenará todas as tarefas
+        let listaDeTarefas = [];
+
+
+        // Função responsável por adicionar uma tarefa
+        function adicionarTarefa() {
+
+            // Pega o texto digitado
+            let tarefa = document.getElementById(
+                "campoTarefa"
+            ).value;
+
+
+            // Adiciona a tarefa no final do array
+            listaDeTarefas.push(tarefa);
+
+
+            // Limpa o campo de texto
+            document.getElementById(
+                "campoTarefa"
+            ).value = "";
+
+
+            // Atualiza a lista na tela
+            atualizarLista();
+
+        }
+
+
+        // Função responsável por mostrar as tarefas
+        function atualizarLista() {
+
+            // Encontra a lista no HTML
+            let lista = document.getElementById(
+                "minhasTarefas"
+            );
+
+
+            // Limpa o conteúdo atual da lista
+            lista.innerHTML = "";
+
+
+            // Percorre todas as tarefas do array
+            for (
+                let i = 0;
+                i < listaDeTarefas.length;
+                i++
+            ) {
+
+                // Cria um novo elemento <li>
+                let item = document.createElement("li");
+
+
+                // Coloca a tarefa dentro do <li>
+                item.innerText = listaDeTarefas[i];
+
+
+                // Coloca o <li> dentro da <ul>
+                lista.appendChild(item);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

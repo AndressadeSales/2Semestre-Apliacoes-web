@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Calculadora</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+      width: 80px;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      background-color: #ddd;
+    }
+
+    button:hover {
+      background-color: #bbb;
+    }
+
+    /* Botão selecionado */
+
+    .selecionado {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-igual {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-igual:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      background-color: #eee;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <input type="number" id="valor1" value="20">
+
+    <button onclick="selecionarOperacao('+', this)">+</button>
+
+    <button onclick="selecionarOperacao('-', this)">-</button>
+
+    <button onclick="selecionarOperacao('*', this)">*</button>
+
+    <button onclick="selecionarOperacao('/', this)">/</button>
+
+    <!-- Botão de porcentagem -->
+    <button onclick="selecionarOperacao('%', this)">%</button>
+
+    <input type="number" id="valor2" value="50">
+
+    <button class="btn-igual" onclick="calcular()">=</button>
+
+    <input type="number" id="resultado" readonly>
+
+  </div>
+
+  <script>
+
+    let operacao = "";
+
+    function selecionarOperacao(tipo, botao) {
+
+      operacao = tipo;
+
+      // Pega todos os botões
+      let botoes = document.querySelectorAll(".container button");
+
+      // Volta todos para a cor original
+      botoes.forEach(function(botao) {
+
+        botao.classList.remove("selecionado");
+
+      });
+
+      // Muda a cor do botão escolhido
+      botao.classList.add("selecionado");
+
+    }
+
+    function calcular() {
+
+      let valor1 = Number(document.getElementById("valor1").value);
+
+      let valor2 = Number(document.getElementById("valor2").value);
+
+      let resultado;
+
+      if (operacao == "+") {
+
+        resultado = valor1 + valor2;
+
+      } else if (operacao == "-") {
+
+        resultado = valor1 - valor2;
+
+      } else if (operacao == "*") {
+
+        resultado = valor1 * valor2;
+
+      } else if (operacao == "/") {
+
+        resultado = valor1 / valor2;
+
+      } else if (operacao == "%") {
+
+        // Cálculo de porcentagem
+        resultado = (valor1 * valor2) / 100;
+
+      } else {
+
+        alert("Escolha uma operação!");
+
+        return;
+
+      }
+
+      document.getElementById("resultado").value = resultado;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
