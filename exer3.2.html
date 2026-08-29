@@ -41,57 +41,40 @@
 
         // Função responsável apenas por calcular a média
         function calcularMedia(n1, n2) {
-
             return (n1 + n2) / 2;
-
         }
-
 
         // Função executada pelo botão
         function calcular() {
-
             // Pega a primeira nota e transforma em número
             let nota1 = Number(
                 document.getElementById("nota1").value
             );
-
             // Pega a segunda nota e transforma em número
             let nota2 = Number(
                 document.getElementById("nota2").value
             );
-
-
             // Chama a função calcularMedia()
             let media = calcularMedia(nota1, nota2);
-
 
             // Encontra o elemento que mostrará o resultado
             let resultado = document.getElementById(
                 "resultadoCalculo"
             );
-
-
+            
             // Mostra a média
             resultado.innerText = "Média: " + media;
 
-
             // Verifica se o aluno foi aprovado
             if (media >= 7) {
-
                 resultado.innerText += " - Aprovado";
-
                 // Coloca o texto na cor verde
                 resultado.style.color = "green";
-
             } else {
-
                 resultado.innerText += " - Recuperação";
-
                 // Coloca o texto na cor vermelha
                 resultado.style.color = "red";
-
             }
-
         }
 
     </script>
