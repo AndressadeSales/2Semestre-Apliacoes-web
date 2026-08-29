@@ -36,19 +36,16 @@
 
         // Função responsável pelo filtro
         function filtrarTecnologias() {
-
             // Pega o texto digitado
             // e transforma tudo em letras minúsculas
             let busca = document.getElementById(
                 "campoBusca"
             ).value.toLowerCase();
 
-
             // Encontra todos os <li> da lista
             let tecnologias = document.querySelectorAll(
                 "#listaTecnologias li"
             );
-
 
             // Percorre todos os elementos encontrados
             for (
@@ -56,30 +53,22 @@
                 i < tecnologias.length;
                 i++
             ) {
-
                 // Pega o texto da tecnologia atual
                 // e transforma em minúsculo
                 let texto = tecnologias[i]
                     .innerText
                     .toLowerCase();
 
-
                 // Verifica se o texto contém
                 // aquilo que foi pesquisado
                 if (texto.includes(busca)) {
-
                     // Mostra o elemento
                     tecnologias[i].style.display = "block";
-
                 } else {
-
                     // Esconde o elemento
                     tecnologias[i].style.display = "none";
-
                 }
-
             }
-
         }
 
     </script>
