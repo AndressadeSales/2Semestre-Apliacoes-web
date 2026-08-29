@@ -31,22 +31,16 @@
         function construirSaudacao(nome) {
 
             return "Olá, " + nome + "! Seja bem-vindo ao curso de Web!";
-
         }
-
 
         // Função executada quando o botão for clicado
         function saudarUsuario() {
-
             // Pega o que foi digitado no campo
             let nome = document.getElementById("campoNome").value;
-
             // Chama a função construirSaudacao()
             let mensagem = construirSaudacao(nome);
-
             // Mostra a mensagem na página
             document.getElementById("mensagem").innerText = mensagem;
-
         }
 
     </script>
