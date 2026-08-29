@@ -29,66 +29,51 @@
 
         // Array que armazenará todas as tarefas
         let listaDeTarefas = [];
-
-
         // Função responsável por adicionar uma tarefa
         function adicionarTarefa() {
-
             // Pega o texto digitado
             let tarefa = document.getElementById(
                 "campoTarefa"
             ).value;
-
-
+            
             // Adiciona a tarefa no final do array
             listaDeTarefas.push(tarefa);
-
-
+            
             // Limpa o campo de texto
             document.getElementById(
                 "campoTarefa"
             ).value = "";
 
-
             // Atualiza a lista na tela
             atualizarLista();
-
         }
-
-
+        
         // Função responsável por mostrar as tarefas
         function atualizarLista() {
-
             // Encontra a lista no HTML
             let lista = document.getElementById(
                 "minhasTarefas"
             );
 
-
             // Limpa o conteúdo atual da lista
             lista.innerHTML = "";
-
-
+            
             // Percorre todas as tarefas do array
             for (
                 let i = 0;
                 i < listaDeTarefas.length;
                 i++
             ) {
-
+                
                 // Cria um novo elemento <li>
                 let item = document.createElement("li");
-
 
                 // Coloca a tarefa dentro do <li>
                 item.innerText = listaDeTarefas[i];
 
-
                 // Coloca o <li> dentro da <ul>
                 lista.appendChild(item);
-
             }
-
         }
 
     </script>
