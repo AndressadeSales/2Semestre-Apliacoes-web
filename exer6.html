@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 6.1 - Gestão de Estoque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+        input[type="number"] {
+            width: 80px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Controle de Estoque</h2>
+
+    <!-- Formulário para Incluir Novo Produto (Exercício 6.1.a) -->
+    <div class="form-group">
+        <h3>Incluir Novo Produto</h3>
+        <label for="nomeProduto">Nome:</label>
+        <input type="text" id="nomeProduto" placeholder="Ex: Teclado"><br><br>
+        <label for="qtdProduto">Qtd:</label>
+        <input type="number" id="qtdProduto" min="0" placeholder="0"><br><br>
+        <button onclick="incluirProduto()">Incluir Produto</button>
+    </div>
+
+    <hr>
+
+    <!-- Tabela de Produtos -->
+    <h3>Estoque Atual</h3>
+    <table id="tabelaEstoque">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabela">
+            <!-- Os dados do estoque.json serão inseridos aqui -->
+        </tbody>
+    </table>
+
+    <!-- Botões de Ação (Exercício 6.1.b) -->
+    <button onclick="atualizarEstoque()">Atualizar Estoque</button>
+    <button onclick="salvarEstoque()">Salvar Estoque (JSON)</button>
+
+    <script>
+        let estoque = [];
+
+        // Carrega o arquivo estoque.json ao iniciar a página
+        async function carregarEstoque() {
+            try {
+                const response = await fetch('estoque.json');
+                estoque = await response.json();
+                exibirTabela();
+            } catch (erro) {
+                console.error('Erro ao carregar estoque:', erro);
+            }
+        }
+
+        // Exibe os produtos na tabela HTML
+        function exibirTabela() {
+            const corpo = document.getElementById('corpoTabela');
+            corpo.innerHTML = '';
+
+            estoque.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.produto}</td>
+                    <td>
+                        <input type="number" id="qtd_${index}" value="${item.quantidade}" min="0">
+                    </td>
+                `;
+                corpo.appendChild(tr);
+            });
+        }
+
+        // =========================================================
+        // EXERCÍCIO 6.1.a - Implementar incluirProduto()
+        // =========================================================
+        function incluirProduto() {
+            const nomeInput = document.getElementById('nomeProduto');
+            const qtdInput = document.getElementById('qtdProduto');
+
+            const nome = nomeInput.value.trim();
+            const quantidade = parseInt(qtdInput.value, 10);
+
+            if (!nome || isNaN(quantidade)) {
+                alert('Por favor, preencha o nome e a quantidade do produto corretamente!');
+                return;
+            }
+
+            // Adiciona o novo produto ao array em memória
+            estoque.push({
+                produto: nome,
+                quantidade: quantidade
+            });
+
+            // Limpa os campos do formulário
+            nomeInput.value = '';
+            qtdInput.value = '';
+
+            // Atualiza a visualização da tabela
+            exibirTabela();
+        }
+
+        // =========================================================
+        // EXERCÍCIO 6.1.b - Implementar atualizarEstoque()
+        // =========================================================
+        function atualizarEstoque() {
+            // Percorre o array e lê as quantidades alteradas nos inputs da tabela
+            estoque.forEach((item, index) => {
+                const inputQtd = document.getElementById(`qtd_${index}`);
+                if (inputQtd) {
+                    item.quantidade = parseInt(inputQtd.value, 10) || 0;
+                }
+            });
+
+            alert('Estoque atualizado na memória com sucesso!');
+        }
+
+        // =========================================================
+        // EXERCÍCIO 6.1.b - Implementar salvarEstoque()
+        // =========================================================
+        function salvarEstoque() {
+            // Garante que o array reflete os dados atuais dos inputs
+            atualizarEstoque();
+
+            // Converte o objeto/array JS em string JSON formatada (cite: 7, 13)
+            const jsonString = JSON.stringify(estoque, null, 2);
+
+            // Cria um Blob e simula o download do arquivo JSON (cite: 10)
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'estoque.json';
+            a.click();
+
+            // Libera a memória da URL criada
+            URL.revokeObjectURL(url);
+        }
+
+        // Inicia o carregamento dos dados quando a página abre
+        carregarEstoque();
+    </script>
+</body>
+</html>
