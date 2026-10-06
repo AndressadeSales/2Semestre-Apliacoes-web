@@ -1,0 +1,16 @@
+{
+  "short_name": "SantaCasa",
+  "name": "Sistema de Gestão Santa Casa",
+  "icons": [
+    {
+      "src": "logosantacasa.webp",
+      "type": "image/webp",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "./login.html",
+  "background_color": "#ffffff",
+  "theme_color": "#0056b3",
+  "display": "standalone",
+  "orientation": "portrait"
+}

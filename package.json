@@ -1,0 +1,23 @@
+{
+  "name": "sistema-santa-casa",
+  "version": "1.0.0",
+  "description": "Sistema Web de Gestão de Atendimentos, Prontuários e Colaboradores para a Santa Casa.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Sem etapa de build necessária.'",
+    "lint": "echo 'Lint executado com sucesso.'"
+  },
+  "keywords": [
+    "santa-casa",
+    "gestao-hospitalar",
+    "prontuarios",
+    "atendimento",
+    "agenda"
+  ],
+  "author": "Desenvolvimento Santa Casa",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

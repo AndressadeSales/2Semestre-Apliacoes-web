@@ -1,0 +1,42 @@
+{
+  "colaboradores": [
+    {
+      "id": 1,
+      "nome": "Dr. Carlos Eduardo",
+      "cargo": "Médico Pediatra",
+      "email": "carlos.eduardo@santacasa.org",
+      "status": "Ativo"
+    },
+    {
+      "id": 2,
+      "nome": "Enfª. Maria Silva",
+      "cargo": "Enfermeira Chefe",
+      "email": "maria.silva@santacasa.org",
+      "status": "Ativo"
+    }
+  ],
+  "pacientes": [
+    {
+      "id": 101,
+      "nome": "João Pereira",
+      "dataNascimento": "1985-04-12",
+      "prontuarioId": "PRONT-2026-001",
+      "statusAtendimento": "Em Atendimento"
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": 501,
+      "pacienteId": 101,
+      "data": "2026-10-07",
+      "horario": "09:00",
+      "tipo": "Consulta Pediatria",
+      "status": "Agendado"
+    }
+  ],
+  "configuracoes": {
+    "notificacoesEmail": true,
+    "tema": "claro",
+    "itensPorPagina": 10
+  }
+}
